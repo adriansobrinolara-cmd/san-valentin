@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>San Valentín</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #ffe6f0, #ff99cc);
+    text-align: center;
+    padding: 50px;
+    color: #800040;
+  }
+  h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+  }
+  .heart {
+    font-size: 4em;
+    color: #ff66b2;
+    animation: heartbeat 1s infinite;
+  }
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+  }
+  button {
+    font-size: 1.5em;
+    padding: 10px 30px;
+    margin: 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  button:hover {
+    transform: scale(1.1);
+  }
+  #yes { background-color: #ff66b2; color: white; }
+  #no { background-color: #ffcccc; color: #800040; }
+  #message { font-size: 1.5em; margin-top: 30px; }
+</style>
+</head>
+<body>
+<h1>Hola Fadwa <span class="heart">💖</span></h1>
+<p style="font-size:1.8em;">¿Quieres ser mi San Valentín?</p>
+<button id="yes">Sí 💘</button>
+<button id="no">No 😅</button>
+<div id="message"></div>
+
+<script>
+let noClicks = 0;
+const maxNoClicks = 5;
+const noMessages = [
+  "Vamos, no digas que no 😘",
+  "No seas cruel, elige sí 💖",
+  "¡Piensa en mí! 💌",
+  "Si dices no, me pongo triste 😢",
+  "Tu corazón dice que sí 💕"
+];
+
+const yesButton = document.getElementById('yes');
+const noButton = document.getElementById('no');
+const messageDiv = document.getElementById('message');
+
+noButton.addEventListener('click', () => {
+  if(noClicks < maxNoClicks) {
+    messageDiv.innerText = noMessages[noClicks];
+    noClicks++;
+  } else {
+    // Último intento: botón No desaparece
+    noButton.style.display = 'none';
+    messageDiv.innerText = "¡No hay más 'No'! Solo puedes elegir Sí 💖";
+  }
+});
+
+yesButton.addEventListener('click', () => {
+  messageDiv.innerHTML = `¡Gracias por elegirme! 💖<br>
+  Mi corazoncito lleva latiendo por ti desde el 23/24 de mayo del 2023.<br>
+  Te quiere mucho, Adri.`;
+  yesButton.style.display = 'none';
+  noButton.style.display = 'none';
+});
+</script>
+</body>
+</html>
